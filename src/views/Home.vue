@@ -18,8 +18,8 @@
 
 <style lang="scss" scoped>
   ul{
-  height:50px;
-  line-height: 50px;
+  height:0.50rem;
+  line-height: 0.50rem;
   text-align: center;
   display: flex;
   li{
@@ -29,7 +29,7 @@
   }
 
   .highLight{
-      border-bottom: 3px solid #309;
+      border-bottom: 0.03rem solid #309;
       color:hotpink;
 
 }

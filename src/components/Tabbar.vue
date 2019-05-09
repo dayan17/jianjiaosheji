@@ -24,8 +24,8 @@ export default {
     left: 0;
     bottom: 0;
     background: #DCB5FF;
-    height: 50px;
-    line-height: 50px;
+    height: 0.5rem;
+    line-height: 0.5rem;
     width:100%;
       ul{
         display: flex;

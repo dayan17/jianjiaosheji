@@ -21,6 +21,9 @@ export default {
 li{
   list-style: none;
 }
+div{
+  font-size:0.16rem
+}
 
 </style>
 

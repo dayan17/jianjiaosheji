@@ -71,7 +71,7 @@ export default new Router({
       component:Detail
     },
     {
-      path:'/',
+      path:'*',
       redirect:'/home'
     }
     
