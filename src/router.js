@@ -42,7 +42,12 @@ export default new Router({
           path:'activity',
           name:'activity',
           component:Activity
+        },
+        {
+          path: '',
+          redirect: '/home/recommend'
         }
+
       ]
     },
     {
