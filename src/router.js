@@ -9,7 +9,8 @@ import Recommend from '@/views/home/Recommend.vue'
 import Furniture from '@/views/home/Furniture.vue'
 import Family from '@/views/home/Family.vue'
 import Activity from '@/views/home/Activity.vue'
-
+import Login from '@/views/login_register/login.vue'
+import Register from '@/views/login_register/register.vue'
 
 Vue.use(Router)
 
@@ -73,6 +74,14 @@ export default new Router({
     {
       path:'*',
       redirect:'/home'
+    },
+    {
+      path:'/login',
+      component:Login
+    },
+    {
+      path:'/register',
+      component:Register
     }
     
 
