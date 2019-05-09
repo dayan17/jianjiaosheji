@@ -5,10 +5,10 @@ import Category from './views/Category.vue'
 import Shopcar from './views/Shopcar.vue'
 import Me from './views/Me.vue'
 import Detail from './views/Detail.vue'
-import Recommend from './views/home/Recommend.vue'
-import Furniture from './views/home/Furniture.vue'
-import Family from './views/home/Family.vue'
-import Activity from './views/home/Activity.vue'
+import Recommend from '@/views/home/Recommend.vue'
+import Furniture from '@/views/home/Furniture.vue'
+import Family from '@/views/home/Family.vue'
+import Activity from '@/views/home/Activity.vue'
 
 
 Vue.use(Router)
@@ -24,22 +24,22 @@ export default new Router({
 
       children:[
         {
-          path:'/recommend',
+          path:'recommend',
           name:'recommend',
           component:Recommend
         },
         {
-          path:'/furniture',
+          path:'furniture',
           name:'furniture',
           component:Furniture
         },
         {
-          path:'/family',
+          path:'family',
           name:'family',
           component:Family
         },
         {
-          path:'/activity',
+          path:'activity',
           name:'activity',
           component:Activity
         }

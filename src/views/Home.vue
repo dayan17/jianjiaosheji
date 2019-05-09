@@ -9,11 +9,10 @@
       <router-link to="/home/family" tag="li" activeClass="highLight">家居</router-link>
 
       <router-link to="/home/activity" tag="li" activeClass="highLight">活动</router-link>
-
  </ul>
 
-        <router-view></router-view>
-    
+            <router-view></router-view>
+
   </div>
 </template>
 
