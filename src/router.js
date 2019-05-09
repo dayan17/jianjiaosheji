@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Category from './views/Category.vue'
 import Shopcar from './views/Shopcar.vue'
 import Me from './views/Me.vue'
+import Detail from './views/Detail.vue'
 import Recommend from './views/home/Recommend.vue'
 import Furniture from './views/home/Furniture.vue'
 import Family from './views/home/Family.vue'
@@ -58,6 +59,15 @@ export default new Router({
       path:'/me',
       name:'me',
       component:Me
+    },
+    {
+      path:'/detail/:deid',
+      name:'detail',
+      component:Detail
+    },
+    {
+      path:'/',
+      redirect:'/home'
     }
     
 
