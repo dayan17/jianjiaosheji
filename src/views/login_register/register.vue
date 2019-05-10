@@ -4,30 +4,103 @@
             <router-link to="/login" tag="span">登录</router-link>
         </div>
         <div class="register-input">
-            <input type="text" placeholder="请输入账号" ref="number">
-            <p class="register-border" ></p>
-            <input type="text" placeholder="请输入用户名">
+            <input type="text" placeholder="请设置用户名" ref="number" @blur="numberEvent">
+            <p class="register-border"></p>
+            <input type="text" placeholder="请设置名称" ref="name" @blur="nameEvent">
         </div>
         <div class="register-input">
-            <input type="text" placeholder="请输入密码">
-            <p class="register-border"></p>
-            <input type="text" placeholder="请重复密码">
+            <input type="text" placeholder="请设置密码" ref="password" @blur="passwordEvent">
         </div>
-        <div class="register-button">注册</div>
+        <span class="alert" ref="alert">{{alertContent}}</span>
+        <div class="register-button" @click="handClick" ref="register">注册</div>
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
-        mounted(){
-            this.$refs.number.onblur = this.handNumber
+        data(){
+            return{
+                numberReg:/^\w{6,16}$/,
+                alertContent:'用户名不能包含特殊字符，需在6到16位内'
+            }
+        },
+        mounted() {
+            this.$store.state.isTabbarShow = false
         },
         methods:{
-            handNumber(){
-                console.log(this.$refs.number.value)
+            numberEvent(){
+                if(this.numberReg.test(this.$refs.number.value)){
+                    console.log('用户名成功')
+                    this.$refs.alert.style.visibility = 'hidden'
+                }else{
+                    console.log('用户名不能包含特殊字符，需在6到16位内')
+                    this.$refs.alert.style.visibility = 'visible'
+                    this.alertContent = "用户名不能包含特殊字符，需在6到16位内"
+                }
+            },
+            nameEvent(){
+                if(this.numberReg.test(this.$refs.name.value)){
+                    console.log('名称成功')
+                    this.$refs.alert.style.visibility = 'hidden'
+                }else{
+                    console.log('名称不能包含特殊字符，需在6到16位内')
+                    this.$refs.alert.style.visibility = 'visible'
+                    this.alertContent = "名称不能包含特殊字符，需在6到16位内"
+                }
+            },
+            passwordEvent(){
+                if(this.numberReg.test(this.$refs.password.value)){
+                    console.log('密码成功')
+                    this.$refs.alert.style.visibility = 'hidden'
+                }else{
+                    console.log('密码不能包含特殊字符，需在6到16位内')
+                    this.$refs.alert.style.visibility = 'visible'
+                    this.alertContent = "密码不能包含特殊字符，需在6到16位内"
+                }
+            },
+            handClick(){
+                if(this.numberReg.test(this.$refs.number.value)&&this.numberReg.test(this.$refs.name.value)&&this.numberReg.test(this.$refs.password.value)){
+                    axios({
+                        method:'post',
+                        url:'/registers/checkename',
+                        data:{
+                            username:this.$refs.number.value
+                        }
+                    }).then(res=>{
+                        console.log(res.data)
+                        if(res.data.allowregister===true){
+                            axios({
+                                method:'post',
+                                url:'/registers/validates',
+                                data:{
+                                    username:this.$refs.number.value,
+                                    password:this.$refs.password.value,
+                                    name:this.$refs.name.value
+                                }
+                            }).then(res=>{
+                                // alert('注册成功')
+                                this.$router.push('/login')
+                            }).catch(err=>{
+                                alert('注册失败')
+                            })
+                        }else{
+                            alert('用户名已存在')
+                        }
+                    }).catch(res=>{
+                        console.log(res.data)
+                    })
+                }else{
+                    this.$refs.alert.style.visibility = 'visible'
+                    this.alertContent = "输入有误"
+                }
             }
-        }
+        },
+        destroyed() {
+            this.$store.state.isTabbarShow = true
+        },
     }
+    
 </script>
 
 <style scoped>
@@ -48,7 +121,6 @@
         width:calc(100%-0.3rem);
         margin:.15rem;
         background:white;
-        height:1rem;
     }
     .register-input input{
         border:none;
@@ -61,15 +133,20 @@
     .register-input .register-border{
         width:3.2rem;
         background: #ccc;
-        height:1px;
+        height:.01rem;
         margin:0 auto;
     }
     .register-button{
         width:calc(100%-0.3rem);
-        margin:.6rem .15rem .15rem .15rem;
+        margin:.15rem;
         background:rgb(255, 214, 50);
         text-align:center;
         line-height:.4rem;
         height:.4rem;
+    }
+    .alert{
+        color:red;
+        margin-left:.2rem;
+        visibility:hidden;
     }
 </style>

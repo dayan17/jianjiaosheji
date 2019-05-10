@@ -1,7 +1,7 @@
 <template>
   <div class="me">
     <div class="me-index">我</div>
-    <div class="me-head">
+    <div class="me-head" @click="handClick">
       <div class="portrait"></div>
       <span>kerwin</span>
       <i class="iconfont icon-iconleft"></i>
@@ -9,9 +9,34 @@
   </div>
 </template>
 <script>
+  import axios from 'axios'
   export default {
-    mounted() {
-      
+    methods:{
+      handClick(){
+        this.$router.push('/register')
+      }
+    },
+    beforeMount(){
+      console.log('你成功了，你知道吗')
+      const token = localStorage.getItem("username");
+      console.log(token)
+      axios({
+        url:'/checktoken',
+        headers:{
+          'Authorization':token?token:''
+        }
+      }).then(res=>{
+        console.log(res.data)
+          if(res.data.ok===0){
+            console.log(res.data)
+            this.$router.push("/login")
+            // console.log(res.data)
+          }else{
+            console.log(res.data.ok);
+            // $("#username").html(localStorage.getItem("username"))
+            // $("#profile").prop("src",res.userprofile)
+          }
+      })
     }
   }
 </script>
@@ -56,10 +81,13 @@
     background:orange;
   }
   .me-head span{
-    margin-left:.1rem;
-    margin-top:.05rem;
+    margin-left:.2rem;
     font-size:.2rem;
   }
   .me-head .icon-iconleft{
+    position:relative;
+    font-size:.16rem;
+    left:2rem;
+    top:.15rem
   }
 </style>
