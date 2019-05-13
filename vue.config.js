@@ -20,7 +20,12 @@ module.exports={
       '/checktoken':{
         target:'http://10.2.156.229:3000',
         changeOrigin:true
+      },
+      '/pages':{
+        target:'https://m.wowdsgn.com',
+        changeOrigin:true
       }
+   
     }
   }
 }
