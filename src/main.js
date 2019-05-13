@@ -4,10 +4,10 @@ import router from './router'
 import store from './store'
 
 import MintUI from 'mint-ui'
+import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css'
-
-Vue.use(MintUI)
 Vue.config.productionTip = false
+Vue.use(Mint);
 
 new Vue({
   router,
