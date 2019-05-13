@@ -14,7 +14,7 @@
             <input type="text" placeholder="请输入密码" ref="password">
         </div>
         <span class="alert" ref="alert">{{alertContent}}</span>
-        <div class="login-button" ref="login" @click="handClick">确认</div>
+        <div class="login-button" ref="login" @click="handClick" @touchstart="start" @touchend="end">确认</div>
 
     </div>
 </template>
@@ -29,6 +29,7 @@
         },
         methods:{
             handClick(){
+                // console.log('aaaa')
                 axios({
                     method:'post',
                     url:'/logins/validate',
@@ -37,10 +38,10 @@
                         password:this.$refs.password.value
                     }
                 }).then(res=>{
-                    console.log(res.data)
+                    // console.log(res.data)
                     if(res.data.ok === 1){
                         // console.log(res.data.token)
-                        localStorage.setItem("token",res.data.token.exp)
+                        localStorage.setItem("token",res.data.token.name)
                         localStorage.setItem("username",this.$refs.username.value)
                         this.$router.push('/home')
                         this.$refs.alert.style.visibility = 'hidden'
@@ -48,6 +49,12 @@
                         this.$refs.alert.style.visibility = 'visible'
                     }
                 })
+            },
+            start(){
+                this.$refs.login.style.background = '#ff0036'
+            },
+            end(){
+                this.$refs.login.style.background = 'rgb(255, 214, 50)'
             }
         },
         mounted() {

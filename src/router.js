@@ -11,6 +11,7 @@ import Family from '@/views/home/Family.vue'
 import Activity from '@/views/home/Activity.vue'
 import Login from '@/views/login_register/login.vue'
 import Register from '@/views/login_register/register.vue'
+import Myupdated from './views/login_register/myupdated.vue'
 
 Vue.use(Router)
 
@@ -82,6 +83,10 @@ export default new Router({
     {
       path:'/register',
       component:Register
+    },
+    {
+      path:'/myupdated',
+      component:Myupdated
     }
     
 

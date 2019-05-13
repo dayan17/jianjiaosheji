@@ -1,7 +1,9 @@
 <template>
   <div id="app">
  <Tabbar v-show="isTabbarShow"></Tabbar>
-  <router-view></router-view>
+  <section>
+    <router-view></router-view>
+  </section>
   </div>
 </template>
 <script>
@@ -28,8 +30,11 @@ li{
   list-style: none;
 }
 div{
-  font-size:0.16rem
+  font-size:0.16rem;
 }
+  section{
+    margin-bottom:.5rem
+  }
   html{background:#f3f3f3}
 </style>
 

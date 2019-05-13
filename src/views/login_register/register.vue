@@ -12,7 +12,7 @@
             <input type="text" placeholder="请设置密码" ref="password" @blur="passwordEvent">
         </div>
         <span class="alert" ref="alert">{{alertContent}}</span>
-        <div class="register-button" @click="handClick" ref="register">注册</div>
+        <div class="register-button" @click="handClick" ref="register" @touchstart="start" @touchend="end">注册</div>
     </div>
 </template>
 
@@ -22,6 +22,7 @@
         data(){
             return{
                 numberReg:/^\w{6,16}$/,
+                nameReg:/^[A-Za-z0-9\u4e00-\u9fa5]{2,8}$/,
                 alertContent:'用户名不能包含特殊字符，需在6到16位内'
             }
         },
@@ -34,19 +35,19 @@
                     console.log('用户名成功')
                     this.$refs.alert.style.visibility = 'hidden'
                 }else{
-                    console.log('用户名不能包含特殊字符，需在6到16位内')
+                    // console.log('用户名不能包含特殊字符，需在6到16位内')
                     this.$refs.alert.style.visibility = 'visible'
                     this.alertContent = "用户名不能包含特殊字符，需在6到16位内"
                 }
             },
             nameEvent(){
-                if(this.numberReg.test(this.$refs.name.value)){
+                if(this.nameReg.test(this.$refs.name.value)){
                     console.log('名称成功')
                     this.$refs.alert.style.visibility = 'hidden'
                 }else{
-                    console.log('名称不能包含特殊字符，需在6到16位内')
+                    // console.log('名称不能包含特殊字符，需在6到16位内')
                     this.$refs.alert.style.visibility = 'visible'
-                    this.alertContent = "名称不能包含特殊字符，需在6到16位内"
+                    this.alertContent = "名称不能包含特殊字符，需在2到8位内"
                 }
             },
             passwordEvent(){
@@ -54,13 +55,13 @@
                     console.log('密码成功')
                     this.$refs.alert.style.visibility = 'hidden'
                 }else{
-                    console.log('密码不能包含特殊字符，需在6到16位内')
+                    // console.log('密码不能包含特殊字符，需在6到16位内')
                     this.$refs.alert.style.visibility = 'visible'
                     this.alertContent = "密码不能包含特殊字符，需在6到16位内"
                 }
             },
             handClick(){
-                if(this.numberReg.test(this.$refs.number.value)&&this.numberReg.test(this.$refs.name.value)&&this.numberReg.test(this.$refs.password.value)){
+                if(this.numberReg.test(this.$refs.number.value)&&this.nameReg.test(this.$refs.name.value)&&this.numberReg.test(this.$refs.password.value)){
                     axios({
                         method:'post',
                         url:'/registers/checkename',
@@ -79,7 +80,7 @@
                                     name:this.$refs.name.value
                                 }
                             }).then(res=>{
-                                // alert('注册成功')
+                                alert('注册成功,请登录')
                                 this.$router.push('/login')
                             }).catch(err=>{
                                 alert('注册失败')
@@ -94,6 +95,12 @@
                     this.$refs.alert.style.visibility = 'visible'
                     this.alertContent = "输入有误"
                 }
+            },
+            start(){
+                this.$refs.register.style.background = '#ff0036'
+            },
+            end(){
+                this.$refs.register.style.background = 'rgb(255, 214, 50)'
             }
         },
         destroyed() {
