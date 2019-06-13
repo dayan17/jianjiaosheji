@@ -1,36 +1,17 @@
 {
-  "name": "jianjiaosheji",
-  "version": "0.1.0",
+  "name": "soft",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "start": "node-dev ./bin/www"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "core-js": "^2.6.5",
-    "mint-ui": "^2.2.13",
-    "vue": "^2.6.10",
-    "vue-infinite-scroll": "^2.0.2",
-    "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.7.0",
-    "@vue/cli-service": "^3.7.0",
-    "axios": "^0.18.0",
-    "mint-ui": "^2.2.13",
-    "sass": "^1.18.0",
-    "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.21"
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "mongoose": "^5.5.7",
+    "morgan": "~1.9.0"
+  }
 }
