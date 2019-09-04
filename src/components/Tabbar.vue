@@ -23,7 +23,7 @@ export default {
     position: fixed;
     left: 0;
     bottom: 0;
-    background: #DCB5FF;
+    background: white;
     height: 0.5rem;
     line-height: 0.5rem;
     width:100%;

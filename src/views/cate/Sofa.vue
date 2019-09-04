@@ -6,17 +6,16 @@
            <a href="/Category"><img src="../../../public/images/category.png" alt=""></a>
        </div>
         <ul class="around url">
-           <li><div @click="char(35)"><i class="iconfont icon-shafa"></i><span>All</span></div></li>
-           <li><div @click="char(20)">沙发</div></li>
-           <li><div @click="char(21)">椅凳</div></li>
-           <li><div @click="char(24)">柜架</div></li>
-           <li><div @click="char(2012)">休闲椅</div></li>
-           <li><div @click="char(2210)">餐桌</div></li>
-           <li><div @click="char(2211)">茶几和边桌</div></li>
-           <li><div @click="char(2212)">书桌</div></li>
-           <li><div @click="char(2310)">床</div></li>
+           <li><div @click="char(35,1)" :class="current===1?'soft-nav':''"><i class="iconfont icon-shafa"></i><span>All</span></div></li>
+           <li><div @click="char(20,2)" :class="current===2?'soft-nav':''">沙发</div></li>
+           <li><div @click="char(21,3)" :class="current===3?'soft-nav':''">椅凳</div></li>
+           <li><div @click="char(24,4)" :class="current===4?'soft-nav':''">柜架</div></li>
+           <li><div @click="char(2012,5)" :class="current===5?'soft-nav':''">休闲椅</div></li>
+           <li><div @click="char(2210,6)" :class="current===6?'soft-nav':''">餐桌</div></li>
+           <li><div @click="char(2211,7)" :class="current===7?'soft-nav':''">茶几和边桌</div></li>
+           <li><div @click="char(2212,8)" :class="current===8?'soft-nav':''">书桌</div></li>
+           <li><div @click="char(2310,9)" :class="current===9?'soft-nav':''">床</div></li>
        </ul>
-       <div class="sofa-block"></div>
        <ul class="sofa">
            <li class="sofa-li" v-for="data in datalist" :key="data.productId">
                <img :src="data.productImg" alt="">
@@ -32,16 +31,16 @@ export default {
     data(){
         return{
             datalist:[],
-            isShow:''
+            isShow:'',
+            current:1
         }
     },
     methods:{
-        char(index){
+        char(index,a){
+            this.current=a
             axios({
                url:`/pages/category/${index}?currentPage=1&sort=onShelfTime&order=desc&_=1557552854848`  
             }).then(res=>{
-                console.log(index)
-                
                 this.datalist=res.data.data
             })
         }
@@ -51,7 +50,6 @@ export default {
         axios({
             url:`/pages/category/20?currentPage=1&sort=onShelfTime&order=desc&_=1557552854848`
         }).then(res=>{
-            // console.log(res.data.data)
             this.datalist=res.data.data
         })
     },
@@ -65,23 +63,20 @@ export default {
     .active{
         background:red
     }
-    .sofa-block{
-        height:1rem;
-        width:100%;
+    .soft-nav{
+        background:#ccc;
     }
     .sofa{
        width:100%;
-       /* clear:both; */
        overflow: hidden;
-       /* margin-l: 0 auto; */
     }
     .sofa-li{
         width:49%;
         float: left;
         margin-left: 0.01rem;
         border:1px #f5f5f5 solid;
-        background:white;
         padding-bottom:.3rem;
+        background:white;
     }
 
     .sofa-li img{
@@ -102,7 +97,6 @@ export default {
     }
     .headers{
         height: 0.4223rem;
-        background: #fff;
         display: flex;
         justify-content: space-between;
         
@@ -126,7 +120,7 @@ export default {
     .around{
         width:100%;
         overflow-x: scroll;
-        position: absolute;
+        /* position: absolute; */
         white-space: nowrap;
     }
 

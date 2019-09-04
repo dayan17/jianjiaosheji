@@ -11,11 +11,8 @@ import Family from '@/views/home/Family.vue'
 import Activity from '@/views/home/Activity.vue'
 import Login from '@/views/login_register/login.vue'
 import Register from '@/views/login_register/register.vue'
-<<<<<<< HEAD
 import Myupdated from './views/login_register/myupdated.vue'
-=======
 import Sofa from '@/views/cate/Sofa.vue'
->>>>>>> 00c9b5dfd71525727bbf744127f698b2cc8d9a5a
 
 Vue.use(Router)
 
@@ -89,13 +86,12 @@ export default new Router({
       component:Register
     },
     {
-<<<<<<< HEAD
       path:'/myupdated',
       component:Myupdated
-=======
+    },
+    {
       path:'/sofa',
       component:Sofa
->>>>>>> 00c9b5dfd71525727bbf744127f698b2cc8d9a5a
     }
     
 

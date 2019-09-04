@@ -37,7 +37,6 @@
   .app{
     width: 3.75rem;
     height: 0.44rem;
-    background: #fff;
   }
 
   .header{
@@ -64,7 +63,6 @@
 
   .body{
     width: 3.45rem;
-    background: #fff;
   }
 
   .body .pic{
